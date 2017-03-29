@@ -1,11 +1,13 @@
 <?php
+
+# title
+	$page_title = "register";
+
 #include header
 	include 'includes/header.php';
 
 
 ?>
-
-
 
 <div class="wrapper">
 		<h1 id="register-label">Admin Login</h1>
@@ -27,8 +29,9 @@
 	</div>
 
 	<?php
-#include header
-	include 'includes/footer.php';
 
+#include header
+
+	include 'includes/footer.php';
 
 ?>

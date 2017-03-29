@@ -1,8 +1,47 @@
 <?php
-#include header
+
+	# title
+	$page_title = "register";
+
+
+	#include header
 	include 'includes/header.php';
 
+	if(array_key_exists('register', $_POST)) {
+		# cache errors
+		$errors = [];
 
+		# validate first name
+		if(empty($_POST['fname'])) {
+			$errors['fname'] = "please enter a first name";
+		}
+
+		if(empty($_POST['lname'])) {
+			$errors['lname'] = "please enter last name";
+		}
+
+		if(empty($_POST['email'])) {
+			$errors['email'] = "please enter email";
+		}
+
+		if(empty($_POST['password'])) {
+			$errors['password'] = "please enter password";
+		}
+
+		if($_POST['password'] = $_POST['pword']) {
+			$errors['pword'] = "passwords do not match";
+		}
+
+		if(empty($errors)) {
+
+			//do database stuff
+		} else {
+			foreach ($errors  as $err) {
+				echo $err;
+			}
+		}
+		
+	}
 ?>
 
 <div class="wrapper">
@@ -11,6 +50,11 @@
 		<hr>
 		<form id="register"  action ="register.php" method ="POST">
 			<div>
+
+			<?php
+				if(isset($errors['fname'])) { echo '<span class="err">'. $errors['fname']. '</span>'; }
+
+			?>
 				<label>first name:</label>
 				<input type="text" name="fname" placeholder="first name">
 			</div>
