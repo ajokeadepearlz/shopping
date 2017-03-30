@@ -29,7 +29,11 @@
 		}
 
 		if(empty($_POST['email'])) {
-			$errors['email'] = "please enter email";
+			$errors['email'] = "please enter email address";
+		}
+
+		if(doesEmailExist($conn, $_POST['email'])) {
+			$errors['email'] = "email already exists";
 		}
 
 		if(empty($_POST['password'])) {
@@ -66,33 +70,48 @@
 
 				if(isset($errors['fname'])) { echo '<span class="err">'. $errors['fname']. '</span>'; }
 
-				if(isset($errors['lname'])) { echo '<span class="err">'. $errors['lname']. '</span>'; }
-
-				if(isset($errors['email'])) { echo '<span class="err">'. $errors['email']. '</span>'; }
-
-				if(isset($errors['password'])) { echo '<span class="err">'. $errors['password']. '</span>'; }
-
-
 				?>
 
 				<label>first name:</label>
 				<input type="text" name="fname" placeholder="first name">
 			</div>
+
 			<div>
+				<?php
+
+				if(isset($errors['lname'])) { echo '<span class="err">'. $errors['lname']. '</span>'; }
+				?>
+				
 				<label>last name:</label>	
 				<input type="text" name="lname" placeholder="last name">
 			</div>
 
 			<div>
+				<?php
+				if(isset($errors['email'])) { echo '<span class="err">'. $errors['email']. '</span>'; }
+
+				?>
+
 				<label>email:</label>
 				<input type="text" name="email" placeholder="email">
 			</div>
+
 			<div>
+				<?php
+
+				if(isset($errors['password'])) { echo '<span class="err">'. $errors['password']. '</span>'; }
+				?>
+
 				<label>password:</label>
 				<input type="password" name="password" placeholder="password">
 			</div>
  
 			<div>
+				<?php
+
+				if(isset($errors['pword'])) { echo '<span class="err">'. $errors['pword']. '</span>'; }
+				?>
+
 				<label>confirm password:</label>	
 				<input type="password" name="pword" placeholder="password">
 			</div>
@@ -108,4 +127,4 @@
 	#include footer
 	include 'includes/footer.php';
 
-	?>ssss
+	?>
