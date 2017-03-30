@@ -3,6 +3,9 @@
 	# title
 	$page_title = "register";
 
+	# load db connection
+	include 'includes/db.php';
+
 
 	#include header
 	include 'includes/header.php';
@@ -35,6 +38,12 @@
 		if(empty($errors)) {
 
 			// do database stuff
+
+			# eliminate unwanted spaces values in the $_POST array
+			$clean = array_map('trim', $_POST);
+
+			# harsh the password
+			$harsh = password_harsh($clean['password'], PASSWORD_BCRYPT);
 		
 		}
 		
