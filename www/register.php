@@ -42,18 +42,18 @@
 			# eliminate unwanted spaces values in the $_POST array
 			$clean = array_map('trim', $_POST);
 
-			# harsh the password
-			$harsh = password_harsh($clean['password'], PASSWORD_BCRYPT);
+			# hash the password
+			$hash = password_hash($clean['password'], PASSWORD_BCRYPT);
 
 			# insert data
-			$stmt = $conn->prepare("INSERT INTO admin(firstname, lastname, email, harsh) VALUES(:fn, :ln, :e, :h)");
+			$stmt = $conn->prepare("INSERT INTO admin(firstname, lastname, email, hash) VALUES(:fn, :ln, :e, :h)");
 
 			# bind params...
 			$data = [
 					':fn' => $clean['fname'],
 					':ln' => $clean['lname'],
 					':e' => $clean['email'],
-					':h' => $clean['password'],
+					':h' => $hash
 
 					];
 
@@ -73,9 +73,18 @@
 			<div>
 
 			<?php
+			
 				if(isset($errors['fname'])) { echo '<span class="err">'. $errors['fname']. '</span>'; }
 
-			?>
+				if(isset($errors['lname'])) { echo '<span class="err">'. $errors['lname']. '</span>'; }
+
+				if(isset($errors['email'])) { echo '<span class="err">'. $errors['email']. '</span>'; }
+
+				if(isset($errors['password'])) { echo '<span class="err">'. $errors['password']. '</span>'; }
+
+				
+				?>
+
 				<label>first name:</label>
 				<input type="text" name="fname" placeholder="first name">
 			</div>
@@ -109,4 +118,4 @@
 	#include footer
 	include 'includes/footer.php';
 
-	?>
+	?>ssss
