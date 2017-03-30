@@ -7,6 +7,10 @@
 	include 'includes/db.php';
 
 
+	# load functions
+	include 'includes/functions.php';
+
+
 	#include header
 	include 'includes/header.php';
 
@@ -73,7 +77,7 @@
 			<div>
 
 			<?php
-			
+
 				if(isset($errors['fname'])) { echo '<span class="err">'. $errors['fname']. '</span>'; }
 
 				if(isset($errors['lname'])) { echo '<span class="err">'. $errors['lname']. '</span>'; }
@@ -82,7 +86,7 @@
 
 				if(isset($errors['password'])) { echo '<span class="err">'. $errors['password']. '</span>'; }
 
-				
+
 				?>
 
 				<label>first name:</label>
