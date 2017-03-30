@@ -85,6 +85,4 @@
 	#include footer
 	include 'includes/footer.php';
 
-
-
 	?>

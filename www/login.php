@@ -30,8 +30,7 @@
 
 	<?php
 
-#include header
-
+	#include header
 	include 'includes/footer.php';
 
 ?>
