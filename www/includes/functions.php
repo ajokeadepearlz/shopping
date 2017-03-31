@@ -5,7 +5,7 @@
 		$hash = password_hash($input['password'], PASSWORD_BCRYPT);
 
 		# insert data
-			$stmt = $conn->prepare("INSERT INTO admin(firstname, lastname, email, hash) VALUES(:fn, :ln, :e, :h)");
+			$stmt = $dbconn->prepare("INSERT INTO admin(firstname, lastname, email, hash) VALUES(:fn, :ln, :e, :h)");
 
 			#bind params...
 			$data = [

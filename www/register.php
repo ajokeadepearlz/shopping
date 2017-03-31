@@ -21,7 +21,7 @@
 
 		# validate first name
 		if(empty($_POST['fname'])) {
-			$errors['fname'] = "please enter a first name";
+			$errors['fname'] = "please enter first name";
 		}
 
 		if(empty($_POST['lname'])) {
@@ -40,7 +40,7 @@
 			$errors['password'] = "please enter password";
 		}
 
-		if($_POST['password'] = $_POST['pword']) {
+		if($_POST['password'] != $_POST['pword']) {
 			$errors['pword'] = "passwords do not match";
 		}
 
@@ -53,6 +53,10 @@
 
 			# register admin
 			doAdminRegister($conn, $clean);
+
+
+					
+
 
 		}
 		
