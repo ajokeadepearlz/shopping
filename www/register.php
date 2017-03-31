@@ -40,6 +40,7 @@
 			$errors['password'] = "please enter password";
 		}
 
+		# validate confirm password
 		if($_POST['password'] != $_POST['pword']) {
 			$errors['pword'] = "passwords do not match";
 		}
@@ -53,9 +54,6 @@
 
 			# register admin
 			doAdminRegister($conn, $clean);
-
-
-					
 
 
 		}
