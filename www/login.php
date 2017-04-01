@@ -1,23 +1,21 @@
 <?php
-
+		session_start();
 # title
 	$page_title = "login";
 
 #include header
 	include 'includes/header.php';
 	include 'includes/db.php';
+	include 'includes/functions.php';
 
-?>
 
-<?php
+		if(array_key_exists('login', $_POST)) {
+		 $errors = [];
 
-if(array_key_exists('login', $_POST)) {
-	errors = [];
-
-	if(empty($_POST['email'])) {
+		if(empty($_POST['email'])) {
 		$errors['email'] = "please enter email";
 
-	if(empty($_POST['password'])) {
+		if(empty($_POST['password'])) {
 		$errors['password'] = "please enter password";
 
 		}
@@ -49,7 +47,7 @@ if(array_key_exists('login', $_POST)) {
 			header("Location:login.php?login_error=$login_error");
 
 		}
-		
+
 
 		if(isset($_GET['login_error'])) {
 				echo $_GET['login_error'];
