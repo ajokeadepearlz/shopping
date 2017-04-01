@@ -73,6 +73,10 @@
 	
 }
 
+function fileuploads($in, $amp, $tom) {
+
+	
+
 define("MAX_FILE_SIZE", "2097152");
 
 # allowed extention...

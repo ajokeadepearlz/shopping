@@ -24,10 +24,11 @@ define("MAX_FILE_SIZE", "2097152");
 
 # allowed extention...
 $ext = ["image/jpg", "image/jpeg", "image/png"];
+		
 
 if(array_key_exists('save', $_POST)) {
 	$errors = [];
-	
+		
 	#be sure a file was seLected..
 
 	if(empty($_FILES['pic']['name'])) {
@@ -58,9 +59,9 @@ $destination = 'uploads/'.$filename;
 
 if(!move_uploaded_file($_FILES['pic']['tmp_name'], $destination)) {
 	$errors[] = "file upload failed";
-
 }
 
+# print_r($_FILES);
 if(empty($errors)) {
 	echo "done";
 } else {
