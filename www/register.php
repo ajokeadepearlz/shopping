@@ -14,10 +14,13 @@
 	#include header
 	include 'includes/header.php';
 
+	# cache errors
+	$errors = [];
+
 
 	if(array_key_exists('register', $_POST)) {
-		# cache errors
-		$errors = [];
+		
+		
 
 		# validate first name
 		if(empty($_POST['fname'])) {
@@ -37,12 +40,12 @@
 		}
 
 		if(empty($_POST['password'])) {
-			$errors['password'] = "please enter password";
+			$errors['password'] = "please enter password <br/>";
 		}
 
 		# validate confirm password
 		if($_POST['password'] != $_POST['pword']) {
-			$errors['pword'] = "passwords do not match";
+			$errors['pword'] = "passwords do not match <br/>";
 		}
 
 		if(empty($errors)) {
@@ -60,8 +63,8 @@
 		
 	}
 ?>
-
-<div class="wrapper">
+<link rel="stylesheet" type="text/css" href="../styles/styles.css">
+ <div class="wrapper">
 
 		<h1 id="register-label">Admin Register</h1>
 		<hr>
@@ -69,8 +72,9 @@
 			<div>
 
 			<?php
-
-				if(isset($errors['fname'])) { echo '<span class="err">'. $errors['fname']. '</span>'; }
+				# if(isset($errors['fname'])) { echo '<span class="err">'. $errors['fname']. '</span>'; }
+					$display = displayErrors($errors, 'fname');
+					echo $display;
 
 				?>
 
@@ -81,7 +85,10 @@
 			<div>
 				<?php
 
-				if(isset($errors['lname'])) { echo '<span class="err">'. $errors['lname']. '</span>'; }
+				# if(isset($errors['lname'])) { echo '<span class="err">'. $errors['lname']. '</span>'; }
+
+					$display = displayErrors($errors, 'lname');
+					echo $display;
 				?>
 				
 				<label>last name:</label>	
@@ -90,7 +97,9 @@
 
 			<div>
 				<?php
-				if(isset($errors['email'])) { echo '<span class="err">'. $errors['email']. '</span>'; }
+				# if(isset($errors['email'])) { echo '<span class="err">'. $errors['email']. '</span>'; }
+					$display = displayErrors($errors, 'email');
+					echo $display;
 
 				?>
 
@@ -101,7 +110,11 @@
 			<div>
 				<?php
 
-				if(isset($errors['password'])) { echo '<span class="err">'. $errors['password']. '</span>'; }
+				# if(isset($errors['password'])) { echo '<span class="err">'. $errors['password']. '</span>'; }
+
+					$display = displayErrors($errors, 'pword');
+					echo $display;
+
 				?>
 
 				<label>password:</label>
@@ -111,7 +124,10 @@
 			<div>
 				<?php
 
-				if(isset($errors['pword'])) { echo '<span class="err">'. $errors['pword']. '</span>'; }
+				# if(isset($errors['pword'])) { echo '<span class="err">'. $errors['pword']. '</span>'; }
+					$display = displayErrors($errors, 'pword');
+					echo $display;
+
 				?>
 
 				<label>confirm password:</label>	
@@ -126,7 +142,7 @@
 
 	<?php
 
+
 	#include footer
 	include 'includes/footer.php';
-
 	?>

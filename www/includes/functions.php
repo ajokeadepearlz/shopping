@@ -38,7 +38,7 @@
 			return $result;
 	}
 
-	function displayError($dbconn, $result){
+	function displayError($dbconn, $result) {
 
 		$result = [];
 
@@ -75,7 +75,7 @@
 
 function fileuploads($in, $amp, $tom) {
 
-	
+
 
 define("MAX_FILE_SIZE", "2097152");
 
@@ -103,7 +103,6 @@ if(!in_array($_FILES['pic']['type'], $ext)) {
 	$errors[] = "invalid file type";
 
 }
-
 # generate random number to append
 $rnd = rand(00000, 99999);
 
@@ -128,10 +127,7 @@ if(empty($errors)) {
     }
 
  }
-
-
-
-
+ 
+}
 
 ?>
-
