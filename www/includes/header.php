@@ -20,7 +20,7 @@ if(isset($_SESSION['active']) && $_SESSION['active']){
 				<ul class="clearfix">
 					<li><a href="dashboard.php" class="selected">Dashboard</a></li>
 					<li><a href="category.php">Categories</a></li>
-					<li><a href="products.php">Products</a></li>
+					<li><a href="product.php">Products</a></li>
 					<li><a href="add_products.php">Add Products</a></li>
 				</ul>
 			</nav>
