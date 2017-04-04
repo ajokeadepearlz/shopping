@@ -38,11 +38,18 @@
 			return $result;
 	}
 
-	function displayError($dbconn, $result) {
+	function displayErrors($dbconn, $result) {
 
-		$result = [];
+		$result = "";
 
-		if(empty($result)) {
+		if(isset($dbconn[$result])) {
+
+			$result = '<span class="err">'. $dbconn[$result]. '</span>';
+		}
+
+			return $result;
+
+		}
 
 			# validate firstname
 		if(empty($_POST['fname'])) {
@@ -57,7 +64,7 @@
 			$errors['email'] = "please enter email address";
 		}
 
-		if(doesEmailExist($conn, $_POST['email'])) {
+		if(doesEmailExist($_POST['email'])) {
 			$errors['email'] = "email already exists";
 		}
 
@@ -68,10 +75,9 @@
 		# validate confirm password
 		if($_POST['password'] != $_POST['pword']) {
 			$errors['pword'] = "passwords do not match";
-		}
 	}	
 	
-}
+
 
 function fileuploads($in, $amp, $tom) {
 

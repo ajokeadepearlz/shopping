@@ -10,16 +10,14 @@
 	# load functions
 	include 'includes/functions.php';
 
-
 	#include header
 	include 'includes/header.php';
 
-	# cache errors
-	$errors = [];
-
+		# cache errors
+		$errors = [];
 
 	if(array_key_exists('register', $_POST)) {
-		
+
 		
 
 		# validate first name
@@ -52,10 +50,10 @@
 
 			// do database stuff
 
-			# eliminate unwanted spaces values in the $_POST array
+		# eliminate unwanted spaces values in the $_POST array
 			$clean = array_map('trim', $_POST);
 
-			# register admin
+		# register admin
 			doAdminRegister($conn, $clean);
 
 
@@ -85,7 +83,7 @@
 			<div>
 				<?php
 
-				# if(isset($errors['lname'])) { echo '<span class="err">'. $errors['lname']. '</span>'; }
+				# if(isset($errors.['lname'])) { echo '<span class="err">'. $errors['lname']. '</span>'; }
 
 					$display = displayErrors($errors, 'lname');
 					echo $display;
@@ -108,10 +106,9 @@
 			</div>
 
 			<div>
+
 				<?php
-
 				# if(isset($errors['password'])) { echo '<span class="err">'. $errors['password']. '</span>'; }
-
 					$display = displayErrors($errors, 'pword');
 					echo $display;
 
