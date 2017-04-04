@@ -16,16 +16,22 @@
 
 			];
 
-			$stmt->execute($data);
+			if($stmt->execute($data)){
+				$sucess = 'You registration is successful, you can login now';
+
+					header("Location:login.php?message=$sucess");
+
+
+			};
 	}
 
-	function doesEmailExist($dbconn, $email) {
+	function doesEmailExist($dbconn, $e) {
 			$result = false;
 
 			$stmt = $dbconn->prepare("SELECT email FROM admin WHERE email=:e");
 
 			# bind params
-			$stmt->bindParam(":e", $email);
+			$stmt->bindParam(":e", $e);
 			$stmt->execute();
 
 			# get number of rows returned
@@ -38,7 +44,7 @@
 			return $result;
 	}
 
-	function displayErrors($dbconn, $result) {
+	/* function displayErrors($dbconn, $result) {
 
 		$result = "";
 
@@ -76,64 +82,111 @@
 		if($_POST['password'] != $_POST['pword']) {
 			$errors['pword'] = "passwords do not match";
 	}	
-	
+	*/
 
 
-function fileuploads($in, $amp, $tom) {
+	function doAdminLogin($dbconn, $input){
+ 		
+
+	 		//INSERT DATA INTO TABLE
+	 		$stmt = $dbconn->prepare("SELECT * FROM  admin WHERE email = :e  ");
+
+	 		//bind params
+
+	 		$stmt->bindParam(":e", $input['email']);
+	 		$stmt->execute();
+	 		$count = $stmt->rowCount();
+
+
+	 		if($count == 1){
+	 		
+	 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+	 		if(password_verify($input['password'],$result['hash'])){	 		
+
+	 			header("Location:dashboard.php");
+			}else{
+
+				$errors = "Invalid Username and/or Password";
+				header("Location:login.php?message=$errors");
+
+				}														
+
+
+	 		}
+
+		}
 
 
 
-define("MAX_FILE_SIZE", "2097152");
+		function addCategory($dbconn,$input){
 
-# allowed extention...
-$ext = ["image/jpg", "image/jpeg", "image/png"];
 
-if(array_key_exists('save', $_POST)) {
-	$errors = [];
-	
-	#be sure a file was seLected..
+			$stmt = $dbconn->prepare("INSERT INTO category(cat_name) VALUES (:c)");
 
-	if(empty($_FILES['pic']['name'])) {
-		$errors[] = "please choose a file";
+	 		//bind params
+			$stmt->bindParam(":c", $input['cat_name']);
+			if($stmt->execute()){
+			
+			$success = "category added";
+  		header("Location:category.php?message=$success");
+	 		}
 
 	}
 
-	# check file size...
 
-	if($_FILES['pic']['size'] > MAX_FILE_SIZE) {
-		$errors[] = "file size exceeds maximum. maximum: ". MAX_FILE_SIZE;
+	function showCategory($dbconn){
+				$stmt = $dbconn->prepare("SELECT * FROM category ");
+				 $stmt->execute();
+				 $result = "";
+
+	 		while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+	 			$cat_id = $row['cat_id'];
+	 			$cat_name = $row['cat_name'];
+	 			
+	 			 $result .= "<tr>";
+	 			  $result .= "<td>" .$cat_id.  "</td>";
+	 			   $result .= "<td>" .$cat_name.  "</td>";
+
+	 			 $result .=   "<td><a href='category.php?action=edit&cat_id=$cat_id&cat_name=$cat_name'>edit</a></td>";
+					$result .=	 "<td><a href='category.php?act=delete&cat_id=$cat_id'>delete</a></td> ";
+	 			     $result .= "</tr>";
+
+
+	 		}
+	  return $result;
+
+	}
+
+
+	function editCategory($dbconn,$input){
+
+		$stmt = $dbconn->prepare("UPDATE  category SET cat_name = :cn 	WHERE cat_id = :i ");
+
+		$stmt->bindParam(":cn", $input['cat_name']);
+		$stmt->bindParam(":i", $input['cat_id']);
+		 $stmt->execute();
+		 	$success = "category edited!";
+  		header("Location:category.php?success=$success");
+
+
+
+
+
+	}
+
+
+
+
+
+	function deleteCat($dbconn, $input){
+
+
+		$stmt = $dbconn->prepare("DELETE FROM  category WHERE cat_id = :i ");
+
+		$stmt->bindParam(":i", $input);
+		 $stmt->execute();
+		 $success = "category deleted!";
+  		header("Location:category.php?message=$success");
+
 }
-
-# check extension...
-if(!in_array($_FILES['pic']['type'], $ext)) {
-	$errors[] = "invalid file type";
-
-}
-# generate random number to append
-$rnd = rand(00000, 99999);
-
-# strip filename for spaces
-$strip_name = str_replace(" ", "_", $_FILES['pic']['name']);
-
-$filename = $rnd.$strip_name;
-$destination = 'uploads/'.$filename;
-
-if(!move_uploaded_file($_FILES['pic']['tmp_name'], $destination)) {
-	$errors[] = "file upload failed";
-
-}
-
-if(empty($errors)) {
-	echo "done";
-} else {
-	foreach ($errors as $err) {
-		echo $err. '</br>';
-		# code...
-	     }
-    }
-
- }
- 
-}
-
-?>
