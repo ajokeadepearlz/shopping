@@ -1,5 +1,7 @@
 <?php
+
 		session_start();
+		
 		$_SESSION['active'] = true;
 		$_SESSION ['cat_page'] = true;
 	
