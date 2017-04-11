@@ -1,10 +1,11 @@
 <?php
+
 session_start();
+
 $_SESSION['active'] = true;
 $_SESSION ['product_page'] = true;
 
 #connect to databse
-
 
 $page_title = "Products";
 
@@ -15,18 +16,12 @@ $page_title = "Products";
 
  include 'includes/header.php';
 
-
-
 ?>
-
-
 
 	<div class="wrapper">
 		<div id="stream"><br/><br/>
 
 <p>
-
-
 
 <?php 
 

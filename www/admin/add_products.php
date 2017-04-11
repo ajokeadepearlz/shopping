@@ -1,6 +1,3 @@
-
-
-
 <?php
 
 $page_title = "Add Products";
@@ -11,12 +8,8 @@ $_SESSION['active'] = true;
 
 #connect to databse
  include 'includes/db.php';
-
  include 'includes/functions.php';
-
-
  include 'includes/header.php';
-
 
 
  if(array_key_exists('add', $_POST)){
