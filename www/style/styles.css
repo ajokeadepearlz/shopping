@@ -31,6 +31,11 @@
   display: table;
   clear: both;
 }
+#date{
+  ba
+  color: #F00;
+}
+
 .backgroundClip {
   background-size: cover;
   background-position: center;
@@ -106,10 +111,7 @@
   width: 250px;
   height: 350px;
   margin-left: 121.5px;
-  background: url('../img/big.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+
   float: left;
 }
 .book-display .info {
@@ -380,14 +382,13 @@
 }
 .review .username {
   font-size: 16px;
-  color: #333333;
+  color: #F00;
   margin-bottom: 4px;
 }
 .review .comment {
   font-size: 14px;
   color: #F00;
-
-  
+  background-color: #00a6fb
 }
 .add-comment .comment {
   background-color: #eee;
@@ -401,8 +402,9 @@
 }
 .add-comment .post-comment {
   display: block;
-  background-color: #00a6fb;
+  background-color: #eee;
   margin-top: 24px;
+  color: #F00;
 }
 .global-error {
   font-size: 14px;

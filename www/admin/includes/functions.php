@@ -267,8 +267,8 @@ function productUpload($dbconn,$files,$error,$pic,$input){
                  {
 
 
-                  $stmt = $dbconn->prepare("INSERT INTO book(title,author,cat_id,price,year,isbn,image_path) 
-                  	VALUES (:t,:a,:c,:p,:y,:i,:im)");
+                  $stmt = $dbconn->prepare("INSERT INTO book(title,author,cat_id,price,year,isbn,image_path,flag) 
+                  	VALUES (:t,:a,:c,:p,:y,:i,:im,:f)");
 
 	 		//bind params
 
@@ -279,6 +279,7 @@ function productUpload($dbconn,$files,$error,$pic,$input){
 	 					':p' => $input['price'],
 	 					':y' => $input['year'],
 	 					':i' => $input['isbn'],
+	 					':f' => $input['flag'],
 	 					':im' => $destination,
 
 	 					

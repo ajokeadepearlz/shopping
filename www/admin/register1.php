@@ -6,7 +6,6 @@
 	# load db connection
 	include 'includes/db.php';
 
-
 	# load functions
 	include 'includes/functions.php';
 

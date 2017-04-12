@@ -1,10 +1,12 @@
 <?php
 		session_start();
-		$_SESSION['active'] = true;
-# title
-	$page_title = "login";
 
-#include header
+		$_SESSION['active'] = true;
+
+		# title
+		$page_title = "login";
+
+		#include header
 	include 'includes/header.php';
 	include 'includes/db.php';
 	include 'includes/functions.php';
@@ -13,16 +15,7 @@
 	?>
 
 
-
-
-
-
-
-
-
-
-	
-	<div class="wrapper">
+		<div class="wrapper">
 		<div id="stream">
 			<table id="tab">
 				<thead>

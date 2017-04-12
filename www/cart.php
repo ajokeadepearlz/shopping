@@ -44,7 +44,10 @@
       </thead>
       <tbody>
         <tr>
-          <td><div class="book-cover b1"></div></td>
+          <td><div class="book-cover" style="  background: url('../img/1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;"></div></td>
           <td><p class="book-price">$200</p></td>
           <td><p class="quantity">3</p></td>
           <td><p class="total">$600</p></td>

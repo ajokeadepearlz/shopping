@@ -133,6 +133,21 @@ $_SESSION['active'] = true;
 			</div>
 
 			<div>
+			<?php if(isset($errors['flag'])){	echo '<span class="err">'.$errors['flag']. '</span>' ; } ?>
+				<label>Flag Option</label>	
+				<select name="flag">
+				<option value="none">No flagging</option>
+				<option value="best selling">Best Selling</option>
+				<option value="trending">Trending</option>
+				<option value="rv">Review</option>
+
+
+
+
+				</select>
+			</div>
+
+			<div>
 
 			<?php if(isset($errors['pic'])){	echo '<span class="err">'.$errors['pic']. '</span>' ; } ?>
 			<label>Upload Image:</label>
