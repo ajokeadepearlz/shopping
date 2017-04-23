@@ -10,6 +10,7 @@
 	while($row = $stmt->fetch(MYSQLResult::FETCH_ASSOC)){
 
 		echo $row['lastname']. "<br>";
+		
 
 		
 	
